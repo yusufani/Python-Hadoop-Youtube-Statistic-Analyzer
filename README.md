@@ -108,6 +108,6 @@ python main.py
 ```
 
 A short intro video for using program:
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=Qfl47hRlPoA)
+[![Video](https://www.youtube.com/watch?v=Qfl47hRlPoA)](https://www.youtube.com/watch?v=Qfl47hRlPoA)
 
 
