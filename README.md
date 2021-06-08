@@ -7,16 +7,16 @@ In this repo, the codes of the tool that can be used in the Docker Python 3 envi
 # Installation
 
 Project have 2 components:
-- Docker Hadoop Envoriment ( Required )
+- Docker Hadoop Environment ( Required )
 - Python GUI 
 
-You can clone repo with following code 
+You can clone the repo with following code 
 ```sh
 git clone https://github.com/yusufani/Python-Hadoop-Youtube-Statistic-Analyzer.git
 ```
 
 - ## Docker Installation
-Make sure that you have [docker](https://docs.docker.com/engine/install/ubuntu/) envoriment.
+Make sure that you have [docker](https://docs.docker.com/engine/install/ubuntu/) environment.
 ```sh
 cd docker-hadoop
 docker-compose up -d 
@@ -51,7 +51,7 @@ hadoop fs -rm -r input # Clearing input folder if exists
 hdfs dfs -put <DATASET_PATH> input
 ```
 
-We are completly read for running hadoop commands. Under map_reducers folder we also supply example map reducer python files. You can create your own map reducers if you want.
+We are completely ready for running hadoop commands. Under map_reducers folder we also supply example map reducer python files. You can create your own map reducers if you want.
 
 Running hadoop code examples: 
 General scheme can be sum up with mappper.py <key_column_index> <value_column_index>. We are giving processing columns as index of dataset. For example :-1 corresponds to the last column. 'count' is special command for putting value to 1.
@@ -92,7 +92,7 @@ hdfs dfs -cat output/part-00000
 ```
 
 # Usage with GUI
-GUI can be run with following code but you need de be sure that your docker envoriment are ready.
+GUI can be run with following code but you need de be sure that your docker environment is ready.
 Check with following code :
 
 ```sh
@@ -101,7 +101,7 @@ docker-compose up -d
 cd ..
 ```
 
-After you can easly run following code:
+After, you can easily run following code:
 ```sh
 cd GUI_python
 python main.py
