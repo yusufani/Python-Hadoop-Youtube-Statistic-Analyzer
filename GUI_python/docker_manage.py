@@ -7,6 +7,7 @@ from shutil import copyfile
 import os
 import json
 from pymitter import EventEmitter
+from datetime import datetime
 
 
 class DockerEnv:
@@ -151,25 +152,37 @@ class DockerEnv:
         try:
             self.update_status_label("Started hadoop job function {}...".format(para["function"]))
             self.event_emitter.emit("OnMapReduceProgressChange",
-                                    {"line": 50 * "*" + 50 * "*" + "STARTING PROCESS" + 50 * "*" + 50 * "*",
-                                     "progress": 0})
+                                    {
+                                        "line": "\n" + 50 * "*" + "\n" + 50 * "*" + "\nSTARTING PROCESS\n" + 50 * "*" + "\n" + 50 * "*",
+                                        "progress": 0})
 
             self.clear_input()
+            start_time = datetime.now()
             self.load_dataset(ds_path, para)
+            passed_time = str((datetime.now() - start_time).total_seconds())
+            self.event_emitter.emit("OnMapReduceProgressChange",
+                                    {"line": "\n-----PASSED TIME for loading dataset:" + passed_time+"-----\n"})
             self.clear_output()
             self.update_status_label("Running hadoop job function {}...".format(para["function"]))
+            start_time = datetime.now()
             if para["function"] == "AVERAGEIF":
-                return self.fix_format(self.averageif(para))
+                data = self.averageif(para)
             elif para["function"] in ["COUNT", "MEAN", "MIN-MAX", "WORD-COUNT"]:
-                return self.fix_format(self.count_minMax_mean_wordCount(para))
+                data = self.count_minMax_mean_wordCount(para)
             elif para["function"] == "LARGE":
-                return self.fix_format(self.large(para))
-
+                data = self.large(para)
+            else:
+                raise NotImplementedError
+            passed_time = str((datetime.now() - start_time).total_seconds())
+            self.event_emitter.emit("OnMapReduceProgressChange",
+                                    {"line": "\n-----PASSED TIME for loading dataset:" + passed_time+"-----\n"})
+            return self.fix_format(data)
 
         except Exception as e:
             print(e)
 
     def fix_format(self, text):
         text = text.decode("utf-8")
+        text = "\n"+ 50 * "#" + "\n" + text + 50 * "#" + "\n"
         self.event_emitter.emit("OnMapReduceProgressChange", {"line": text})
         return text

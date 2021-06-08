@@ -25,13 +25,13 @@ class Ui_MainWindow(object):
         self.run_hadoop.setEnabled(newText != "" and self.ds_button_group.checkedButton() != None)
 
     def update_progress_bar(self, newValue):
-        print("Prog barr ", newValue)
+        #print("Prog barr ", newValue)
         if newValue.get("progress", "yokanam") != "yokanam":
             self.progressBar.setValue(newValue["progress"])
         self.text_output.setText(self.text_output.text() + newValue["line"])
 
     def update_status_label(self, newValue):
-        print(newValue)
+        #print(newValue)
         self.status_label.setText(newValue)
 
     def show_graphs(self, graph_paths):
@@ -1736,7 +1736,7 @@ class Ui_MainWindow(object):
         self.frame_6.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
 
     def send_email(self, mailto, event):
-        print(event)
+        #print(event)
         try:
             win32api.ShellExecute(0, 'open', 'mailto:' + mailto, None, None, 0)
         except Exception as e:

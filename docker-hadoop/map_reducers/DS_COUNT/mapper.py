@@ -5,8 +5,10 @@
 import sys
 
 key_column_idx = sys.argv[1]  # This variable holds index of corresponding dataset key column
+
 if key_column_idx != "None":
     key_column_idx = int(key_column_idx)
+
 
 value_column_idx = sys.argv[2]  # This variable holds index of corresponding dataset value column
 if value_column_idx.lower() != "count":
@@ -25,11 +27,10 @@ for line in sys.stdin:
         try:
             words = line.split(",")
             # increase counters
-
             key = key_column_idx if key_column_idx == "None" else words[key_column_idx]
-            val = "1" if value_column_idx.lower() == "count" else words[value_column_idx]
+            val = "1" if value_column_idx == "count" else words[value_column_idx]
 
-            print('%s\t%s' % (words[key], val))
+            print('%s\t%s' % (key, val))
         except Exception as e :
             print(e)
 
