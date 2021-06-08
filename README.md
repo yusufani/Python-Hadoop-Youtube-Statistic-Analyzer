@@ -45,7 +45,7 @@ For give command we need to be in namenode bash:
 docker exec -it namenode bash
 cd map_reducers
 ```
-To load the dataset, the dataset must be in the docker environment. For this, I linked the map_reducers folder with the system in the docker folder. If you put your dataset inside the map_reducers folder. It will also appear under map_reducers in Namenode. After that you can upload your data with following commmand:
+To load the dataset, the dataset must be in the docker environment. For this, I linked the map_reducers folder with the system in the docker folder. If you put your dataset inside the map_reducers folder. It will also appear under map_reducers in Namenode. After that you can upload your data with following command:
 ```sh
 hadoop fs -rm -r input # Clearing input folder if exists
 hdfs dfs -put <DATASET_PATH> input
@@ -54,7 +54,7 @@ hdfs dfs -put <DATASET_PATH> input
 We are completely ready for running hadoop commands. Under map_reducers folder we also supply example map reducer python files. You can create your own map reducers if you want.
 
 Running hadoop code examples: 
-General scheme can be sum up with mappper.py <key_column_index> <value_column_index>. We are giving processing columns as index of dataset. For example :-1 corresponds to the last column. 'count' is special command for putting value to 1.
+General scheme can be sum up with mapper.py <key_column_index> <value_column_index>. We are giving processing columns as index of dataset. For example :-1 corresponds to the last column. 'count' is special command for putting value to 1.
 
 
 ## EXAMPLE COMMANDS
