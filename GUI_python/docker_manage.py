@@ -183,6 +183,6 @@ class DockerEnv:
 
     def fix_format(self, text):
         text = text.decode("utf-8")
-        text = "\n"+ 50 * "#" + "\n" + text + 50 * "#" + "\n"
-        self.event_emitter.emit("OnMapReduceProgressChange", {"line": text})
+        texti = "\n"+ 50 * "#" + "\n" + text + 50 * "#" + "\n"
+        self.event_emitter.emit("OnMapReduceProgressChange", {"line": texti})
         return text

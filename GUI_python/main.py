@@ -113,7 +113,7 @@ class MainWindow(QMainWindow):
     def openDataset(self):
         try:
             self.ds_path = QFileDialog.getOpenFileName(self, 'Open file',
-                                                       '..\\docker-hadoop\\map_reducers')[0]
+                                                       '')[0]
 
             self.ui.dataset_path.setText(self.ds_path)
             with open(self.ds_path, "r", encoding="utf-8") as fp:
