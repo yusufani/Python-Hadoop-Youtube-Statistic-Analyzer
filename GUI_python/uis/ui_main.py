@@ -25,6 +25,9 @@ class Ui_MainWindow(object):
         self.run_hadoop.setEnabled(newText != "" and self.ds_button_group.checkedButton() != None)
 
     def update_progress_bar(self, newValue):
+        if newValue.get("clear", "yokanam") != "yokanam":
+            self.text_output.setText("")
+            return
         #print("Prog barr ", newValue)
         if newValue.get("progress", "yokanam") != "yokanam":
             self.progressBar.setValue(newValue["progress"])
@@ -35,13 +38,13 @@ class Ui_MainWindow(object):
         self.status_label.setText(newValue)
 
     def show_graphs(self, graph_paths):
-        # self.graphics_tab_widget.clear()
-        tab_count = self.graphics_tab_widget.count()
-
-        for idx in range(1, tab_count):
-            # self.graphics_tab_widget.tab
-            self.graphics_tab_widget.removeTab(idx)
-
+        i = 0
+        while i < 6:
+            try:
+                self.graphics_tab_widget.removeTab(1)
+            except Exception as e:
+                print(e)
+            i += 1
         for idx, path in enumerate(graph_paths):
             tab = self.create_graph_tab(path, idx + 1, True)
             self.graphics_tab_widget.addTab(tab, "")

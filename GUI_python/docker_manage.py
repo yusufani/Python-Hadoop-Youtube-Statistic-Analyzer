@@ -150,6 +150,8 @@ class DockerEnv:
 
     def run(self, ds_path, para):
         try:
+            self.event_emitter.emit("OnMapReduceProgressChange",
+                                    {"clear": True})
             self.update_status_label("Started hadoop job function {}...".format(para["function"]))
             self.event_emitter.emit("OnMapReduceProgressChange",
                                     {
@@ -175,7 +177,7 @@ class DockerEnv:
                 raise NotImplementedError
             passed_time = str((datetime.now() - start_time).total_seconds())
             self.event_emitter.emit("OnMapReduceProgressChange",
-                                    {"line": "\n-----PASSED TIME for loading dataset:" + passed_time+"-----\n"})
+                                    {"line": "\n-----PASSED TIME for Function :" + passed_time+"-----\n"})
             return self.fix_format(data)
 
         except Exception as e:
